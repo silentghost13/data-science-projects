@@ -127,3 +127,70 @@ ALTER TABLE PortfolioProject.dbo.NashvilleHousing
 DROP COLUMN PropertyAddress, SaleDate, OwnerAddress, TaxDistrict
 
 */
+
+
+-- Creating temp table
+DROP TABLE IF EXISTS #nashville_housing_temp
+CREATE TABLE #nashville_housing_temp
+(
+unique_id float,
+parcel_id nvarchar(255),
+land_use nvarchar(255),
+property_address nvarchar(255),
+property_city nvarchar(255),
+land_value float,
+building_value float,
+total_value float,
+sale_price float,
+sale_date date,
+year_built float,
+sold_as_vacant nvarchar(255)
+)
+
+INSERT INTO #nashville_housing_temp
+SELECT [UniqueID ], ParcelID, LandUse, PropertySplitAddress, PropertySplitCity, LandValue, BuildingValue, TotalValue, SalePrice, SaleDateConverted, YearBuilt, SoldAsVacant
+FROM PortfolioProject.dbo.NashvilleHousing;
+
+--Delete duplicates 
+WITH RowNumCTE AS (
+SELECT *,
+	ROW_NUMBER() OVER (
+	PARTITION BY 
+		parcel_id,
+		property_address,
+		sale_date,
+		sale_price
+		ORDER BY
+			unique_id
+	) row_num
+FROM #nashville_housing_temp
+)
+
+DELETE
+FROM RowNumCTE
+WHERE row_num > 1
+
+--Deleting missing value
+DELETE
+FROM #nashville_housing_temp
+WHERE total_value IS NULL;
+
+DELETE
+FROM #nashville_housing_temp
+WHERE year_built IS NULL;
+
+SELECT *
+FROM #nashville_housing_temp;
+
+--Find the highest value per city
+SELECT property_city, SUM(land_value) as land_value_per_city, SUM(building_value) as building_value_per_city, SUM(total_value) as total_value_per_city
+FROM #nashville_housing_temp
+GROUP BY property_city
+ORDER BY total_value_per_city DESC;
+
+--Find the most used land use per city
+SELECT property_city, land_use, COUNT(land_use) as land_use_per_city
+FROM #nashville_housing_temp
+GROUP BY property_city, land_use
+ORDER BY property_city, land_use_per_city DESC;
+

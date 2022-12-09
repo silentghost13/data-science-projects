@@ -6,6 +6,9 @@
 
 # THIS CODE IS STILL A PROTOTYPE
 
+# Original data source: https://divvy-tripdata.s3.amazonaws.com/index.html
+# License agreement: https://ride.divvybikes.com/data-license-agreement
+
 #===========#
 ## Process ##
 #===========#

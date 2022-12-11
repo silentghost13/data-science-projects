@@ -4,9 +4,8 @@
 # The entire process is done according to the guidelines provided by google to do the entire work in 6 phases. 
 # Ask, Prepare, Process, Analyze, Share & Act
 
-# THIS CODE IS STILL A PROTOTYPE
-
 # Original data source: https://divvy-tripdata.s3.amazonaws.com/index.html
+# Data from January to December 2021
 # License agreement: https://ride.divvybikes.com/data-license-agreement
 
 #===========#

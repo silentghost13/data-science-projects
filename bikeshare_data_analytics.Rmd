@@ -1,0 +1,277 @@
+---
+title: "Case Study - cyclist bikeshare"
+subtitle: "Google data analytics capstone project"
+output: html_notebook
+last updated: 19/12/2022
+---
+
+# Bikeshare Google Data Analytics (Case Study 1)
+This is a case study to pass the Google Data Analytics Professional Certification Program offered by Google Career Certificates Team through Coursera. The entire process is done according to the guidelines provided by google to do the entire work in 6 phases. Ask, Prepare, Process, Analyze, Share and Act.
+
+## Introduction
+
+### Scenario
+Working as a Junior data analyst at Cyclistic, a bike sharing company in Chicago
+
+### Company details:
+- In 2016, the company have 5,824 Bike and 692 docking stations.
+- 3 Types of bikes (Reclining bike, Hand Tricycle, Cargo Bike).
+- 8% use the assistive bike, 30% for commute to work every day, and most of them for leisure.
+- They have 2 type of membership model:
+  1. Casual riders (Single-ride, Single-day)
+  2. Cyclistic Members (Annual Membership)
+
+### Key stakeholders:
+- Lily Moreno: Cyclistic's marketing director and responsible for developing campaigns and initiatives to promote bike sharing and my manager.
+- Cyclistic's executive team: The highly detail-oriented executive team will decide whether they approve the recommended marketing program.
+- Cyclistic's marketing analytics team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic's marketing strategy.
+
+### Deliverables:
+1. A clear statement of business task
+2. A description of all data source used
+3. Documentation of any cleaning or manipulation of data
+4. A summary of the analysis
+5. Supporting visualization and key findings
+6. Top three recommendations based on your analysis
+
+## Phase 1: Ask
+In this phase, the problem and objectives of our case study and its desired outcome are stated.
+
+### Business goal:
+1. Increase the annual membership by converting casual riders into cyclistic members.
+2. Find how annual members and casual riders differs.
+3. Identify trends from Cyclistic historical bike trip data.
+4. A campaign to promote bike-share program. (Include email, social media, etc.)
+
+### **Business task**:
+1. How do Annual Members and Casual Riders use Cyclistic bikes differently?
+2. Why Casual Riders would buy a membership?
+3. How does Cyclistic use digital media to influence Casual Riders to become Annual Members?
+
+## Phase 2: Prepare
+In the this phase, we check the data being used and its limitations.
+
+### Information on data source:
+Cyclistic's historical trip data from December 2021 to November 2022 are used to analyze and identify trends. They are downloaded from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). The data has been made available by Motivate International Inc. under this [license](https://ride.divvybikes.com/data-license-agreement).
+
+We are working on 12 months of data separated by each month from December 2021 to November 2022 in CSV file format. The data is mainly organized by date in descending order (oldest first).
+
+### ROCCC of data:
+A good data source is ROCCC which stands for Reliable, Original, Comprehensive, Current, and Cited.
+
+- Reliable: yes, data is reliable as this is 1st party data.
+- Original: yes, data is original as this is downloaded directly
+- Comprehensive: no, we do not have access to some of the data
+- Current: yes, data is latest to the last 12 months
+- Cited: yes 
+
+### Limitations of the data:
+- We cannot know if a casual member is repeteadly using bike share facility as we do not have that access.
+- The data has some negative ride length and ride length less than 1 minutes, we have no insight of such cases. 
+
+loading packages
+```{r}
+library("tidyverse") # tidyverse is an opinionated collection of R packages designed for data science.
+library("lubridate") # package for dealing with dates
+library("ggplot2") # package for data visualization
+```
+
+load all csv files as month_year
+```{r}
+dec_21 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202112-divvy-tripdata.csv")
+jan_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202201-divvy-tripdata.csv")
+feb_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202202-divvy-tripdata.csv")
+mar_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202203-divvy-tripdata.csv")
+apr_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202204-divvy-tripdata.csv")
+may_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202205-divvy-tripdata.csv")
+jun_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202206-divvy-tripdata.csv")
+jul_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202207-divvy-tripdata.csv")
+aug_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202208-divvy-tripdata.csv")
+sep_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202209-divvy-tripdata.csv")
+oct_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202210-divvy-tripdata.csv")
+nov_22 <- read.csv("E:\\Resources\\case_studies\\bikeshare\\datasets\\bikeshare-dec21-to-nov22\\202211-divvy-tripdata.csv")
+```
+
+check for data inconsistency
+```{r}
+library("janitor") # package for examining and cleaning data
+janitor::compare_df_cols(dec_21, jan_22, feb_22, mar_22, apr_22, may_22, jun_22, jul_22, aug_22, sep_22, oct_22, nov_22, return = "mismatch") # Only return the mismatched columns after comparing all data frame
+```
+
+merge all data frames into single data frames
+```{r}
+all_trips <- bind_rows(dec_21, jan_22, feb_22, mar_22, apr_22, may_22, jun_22, jul_22, aug_22, sep_22, oct_22, nov_22)
+glimpse(all_trips)
+```
+now we get a big dataset  as all_trips. 
+
+rename column member_casual to member_type for self-explanatory name
+```{r}
+all_trips <- all_trips %>% 
+  rename(member_type=member_casual)
+```
+
+remove unused data frames
+```{r}
+rm(dec_21, jan_22, feb_22, mar_22, apr_22, may_22, jun_22, jul_22, aug_22, sep_22, oct_22, nov_22)
+```
+*We remove unused data frames to save our system memory space*
+
+### **Description of all data source used:**
+- We have used all 12 '.csv' file and loaded them into rstudio. 
+- We renamed column name member_casual to member_type for self-explanatory name. 
+- We take a look on `all_trips` and understand what data is provided. There are 13 columns and most of the variable are self descriptive except these columns. 
+- "ride_id" `<chr> <unique>` This is ride id, Unique for every trip when bike is unlocked. 
+- "rideable_type" `docked_bike, clasic_bike, electric_bike` This is type of bike provided by Cyclistic. 
+- "member_type" `casual, member` This is type of membership provided by the Cyclistic.
+
+data frame summary
+```{r}
+summary(all_trips)
+```
+
+## Phase 3: Process
+In this phase, we will clean the data and make it ready for analysis.
+
+### **Documentation of any cleaning or manipulation of data:**
+
+inspect data frame and check *NA* values
+```{r}
+glimpse(all_trips)
+sum(is.na(all_trips))
+```
+
+remove *NA* values from data frame
+```{r}
+all_trips_v2 <- na.omit(all_trips)
+sum(is.na(all_trips_v2))
+glimpse(all_trips_v2)
+```
+
+convert column started_at and ended_at to date-time format
+```{r}
+all_trips_v2$started_at <- as.POSIXlt(all_trips_v2$started_at, format="%F %T")
+all_trips_v2$ended_at <- as.POSIXlt(all_trips_v2$ended_at, format="%F %T")
+glimpse(all_trips_v2)
+```
+
+remove unused columns
+```{r}
+all_trips_v2 <- subset(all_trips_v2, select = -c(start_lat, start_lng, end_lat, end_lng))
+glimpse(all_trips_v2)
+```
+
+### There are few problems to fix in this data:
+1. The data can only be aggregated at the ride-level, which is too granular. We will want to add some additional columns of data -- such as day, month, year -- that provide additional opportunities to aggregate the data.
+2. We will want to add a calculated field for length of ride since the data did not have the "trip_duration" column. We will add"ride_length" to the entire dataframe for consistency.
+3. There are some rides where trip_duration shows up as negative, including several hundred rides where Divvy took bikes out of circulation for Quality Control reasons. We will want to delete these rides.
+
+### Add columns that list the date, year, month, day of each ride
+This will allow us to aggregate ride data for each month, quarter, day, or year ... before completing these operations we could only aggregate at the ride level.
+
+add column date
+```{r}
+all_trips_v2$date <- date(all_trips_v2$started_at)
+```
+
+Add column year, month, day, and day of week
+```{r}
+all_trips_v2$year <- year(all_trips_v2$date)
+all_trips_v2$month <- month(all_trips_v2$date)
+all_trips_v2$day <- day(all_trips_v2$date)
+all_trips_v2$day_of_week <- wday(all_trips_v2$date, label = TRUE, abbr = FALSE)
+glimpse(all_trips_v2)
+```
+
+Add column ride_length_mins to all_trips 
+```{r}
+all_trips_v2$ride_length_mins <- trunc(difftime(all_trips_v2$ended_at, all_trips_v2$started_at, units = "mins"))
+glimpse(all_trips_v2)
+```
+
+remove negative number in column ride_length_mins to remove "bad" data
+```{r}
+all_trips_v2 <- all_trips_v2 %>%
+  filter(ride_length_mins >= 0)
+```
+
+## Phase 4: Analyze
+In this phase, we will analyze the cleaned data
+
+### **Summary of the analysis**
+
+Ride length summary for all riders
+```{r}
+all_trips_v2 %>% 
+  summarise(min = min(ride_length_mins), median = median(ride_length_mins), mean = mean(ride_length_mins), max = max(ride_length_mins))
+```
+
+Ride length summary for casual riders vs. member riders
+```{r}
+all_trips_v2 %>%
+  group_by(member_type) %>%
+  summarise(min = min(ride_length_mins), median = median(ride_length_mins), mean = mean(ride_length_mins), max = max(ride_length_mins))
+```
+Number of rides and ride length average by each day for casual riders vs. member riders
+```{r}
+all_trips_v2 %>%
+  group_by(day_of_week, member_type) %>%
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins))
+```
+### Export data for further analysis
+```{r}
+write.csv(all_trips_v2, "all_trips_v2.csv", row.names = FALSE)
+```
+
+
+## Phase 5: Share
+In this phase, we will create visualization to share the result of our analysis
+
+### **Supporting visualization and key findings**
+
+Our task is to find how annual members and casual riders use bikes differently.
+**Comparing the number of rides by weekday** for casual and member riders
+```{r}
+all_trips_v2 %>%
+  mutate(weekday = wday(started_at, label = TRUE)) %>%
+  group_by(member_type, weekday) %>%
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins)) %>%
+  arrange(member_type, weekday) %>%
+  ggplot(aes(x = weekday, y = number_of_rides, fill = member_type)) +
+  geom_col(position = "dodge")
+```
+
+**Comparing the average ride length by weekday** for casual and member riders
+```{r}
+all_trips_v2 %>%
+  mutate(weekday = wday(started_at, label = TRUE)) %>%
+  group_by(member_type, weekday) %>%
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins)) %>%
+  arrange(member_type, weekday) %>%
+  ggplot(aes(x = weekday, y = average_ride_length, fill = member_type)) +
+  geom_col(position = "dodge")
+```
+
+**Comparing the number of rides by start time hour** for casual and member riders
+```{r}
+all_trips_v2 %>% 
+  mutate(start_time_hour = hour(started_at)) %>% 
+  group_by(start_time_hour, member_type) %>% 
+  summarise(number_of_rides = n()) %>% 
+  arrange(start_time_hour) %>% 
+  ggplot(aes(x = start_time_hour, y = number_of_rides, fill = member_type)) + 
+  geom_col(position = "dodge")
+```
+
+**Comparing total rides by month** for casual and member riders
+```{r}
+all_trips_v2 %>%
+  mutate()
+```
+
+
+
+
+
+
+

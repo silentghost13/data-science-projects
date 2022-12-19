@@ -2,6 +2,7 @@
 title: "Case Study - cyclist bikeshare"
 subtitle: "Google data analytics capstone project"
 output: html_notebook
+created by: Ilham Yusuf Balanda
 last updated: 19/12/2022
 ---
 
@@ -263,11 +264,6 @@ all_trips_v2 %>%
   geom_col(position = "dodge")
 ```
 
-**Comparing total rides by month** for casual and member riders
-```{r}
-all_trips_v2 %>%
-  mutate()
-```
 
 
 

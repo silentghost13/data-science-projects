@@ -3,7 +3,7 @@ title: "Case Study - cyclist bikeshare"
 subtitle: "Google data analytics capstone project"
 output: html_notebook
 created by: Ilham Yusuf Balanda
-last updated: 19/12/2022
+last updated: 17/02/2022
 ---
 
 # Bikeshare Google Data Analytics (Case Study 1)
@@ -241,6 +241,10 @@ all_trips_v2 %>%
   ggplot(aes(x = weekday, y = number_of_rides, fill = member_type)) +
   geom_col(position = "dodge")
 ```
+- The highest number of rides occur on Wednesday for the member rides and Saturday for the casual rides
+- Tuesday has the lowest number of rides for casual
+- At the Weekend the number of rides for casual is higher than member
+- There are gradually increasing trend in the number of rides for casual the nearer to the weekend and vice versa
 
 **Comparing the average ride length by weekday** for casual and member riders
 ```{r}
@@ -252,6 +256,10 @@ all_trips_v2 %>%
   ggplot(aes(x = weekday, y = average_ride_length, fill = member_type)) +
   geom_col(position = "dodge")
 ```
+- The average ride length for casual is higher than members across all week
+- The highest average ride length occurs on Sundays for both casual and member
+- There are gradually increasing trend in average ride length for casual the nearer to the weekend and vice versa
+- There are significant differences in the average ride length for casual and member accros all week
 
 **Comparing the number of rides by start time hour** for casual and member riders
 ```{r}
@@ -263,8 +271,8 @@ all_trips_v2 %>%
   ggplot(aes(x = start_time_hour, y = number_of_rides, fill = member_type)) + 
   geom_col(position = "dodge")
 ```
-
-
+- The highest number of rides for casual is 6 pm, and for members is 5 pm
+- There is an increasing trend in the number of rides for members between 5 am to 8 am, and between 3 pm to 5 pm
 
 
 

@@ -3,7 +3,7 @@ title: "Case Study - Bikeshare - Cyclistic"
 subtitle: "Google Data Analytics Capstone Project"
 output: html_notebook
 created by: Ilham Yusuf Balanda
-last updated: 17/02/2022
+last updated: 17/02/2023
 ---
 
 # Bikeshare Google Data Analytics (Case Study 1)

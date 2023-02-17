@@ -1,1 +1,1 @@
-View link: http://htmlpreview.github.io/?https://github.com/silentghost13/portfolio-projects/blob/main/bikeshare_analytics/cyclistic_bikeshare.html
+[Please click this link to view html file without downloading the file](http://htmlpreview.github.io/?https://github.com/silentghost13/portfolio-projects/blob/main/bikeshare_analytics/cyclistic_bikeshare.html)

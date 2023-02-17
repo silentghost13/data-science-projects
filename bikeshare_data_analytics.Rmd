@@ -257,8 +257,8 @@ all_trips_v2 %>%
   geom_col(position = "dodge")
 ```
 - The average ride length for casual is higher than members across all week
-- The highest average ride length occurs on Sundays for both casual and member
-- There are gradually increasing trend in average ride length for casual the nearer to the weekend and vice versa
+- The longest average ride length occurs on Sundays for both casual and member
+- There is a gradually increasing trend in average ride length for casual the nearer to the weekend and vice versa
 - There are significant differences in the average ride length for casual and member accros all week
 
 **Comparing the number of rides by start time hour** for casual and member riders
@@ -273,6 +273,15 @@ all_trips_v2 %>%
 ```
 - The highest number of rides for casual is 6 pm, and for members is 5 pm
 - There is an increasing trend in the number of rides for members between 5 am to 8 am, and between 3 pm to 5 pm
+
+### Key insights:
+- The casual riders ride more on weekends, and the members ride less on weekends
+- The longest average ride length for casual and member occur on Sunday
+- There are gradually increasing trend in number of rides for casual between 10 am to 6 pm
+
+### **Recommendations**:
+- The marketing campaign should be launched in weekends to attract more casual riders
+- The marketing campaign should try to focus on the time between 10 am to 6 pm to target more casual riders
 
 
 

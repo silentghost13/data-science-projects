@@ -1,33 +1,16 @@
 ---
-title: "Case Study - Bikeshare - Cyclistic"
-subtitle: Google Data Analytics Capstone Project
+title: "Cyclistic Bikeshare - Case Study"
 output:
   html_document:
     df_print: paged
 created by: Ilham Yusuf Balanda
-last updated: 17/02/2022
+last updated: 18/02/2022
 ---
-#==================================================================================================================#
 
-# Bikeshare Google Data Analytics
-This is a case study to pass the Google Data Analytics Professional Certification Program offered by Google Career Certificates Team through Coursera. The entire process is done according to the guidelines provided by google to do the entire work in 6 phases. Ask, Prepare, Process, Analyze, Share and Act.
+This case study is originally based on "[Sophisticated, Clear, and Polished’: Divvy and Data Visualization](https://artscience.blog/home/divvy-dataviz-case-study)" written by Kevin Hartman. We will be using [Divvy Dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) from December 2021 to November 2022 for the case study as part of the Google Data Analytics Professional Certification Program. The data has been made available by Motivate International Inc. under this [license](https://ride.divvybikes.com/data-license-agreement). Due to data-privacy, any personally-identifiable information has been removed/encrypted. 
 
-## Introduction
-### Scenario
-Working as a Junior data analyst at Cyclistic, a bike sharing company in Chicago
-
-### Company details:
-- In 2016, the company have 5,824 Bike and 692 docking stations.
-- 3 Types of bikes (Reclining bike, Hand Tricycle, Cargo Bike).
-- 8% use the assistive bike, 30% for commute to work every day, and most of them for leisure.
-- They have 2 type of membership model:
-  1. Casual riders (Single-ride, Single-day)
-  2. Cyclistic Members (Annual Membership)
-
-### Key stakeholders:
-- Lily Moreno: Cyclistic's marketing director and responsible for developing campaigns and initiatives to promote bike sharing and my manager.
-- Cyclistic's executive team: The highly detail-oriented executive team will decide whether they approve the recommended marketing program.
-- Cyclistic's marketing analytics team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic's marketing strategy.
+## Scenario
+You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
 ### Deliverables:
 1. A clear statement of business task
@@ -37,36 +20,16 @@ Working as a Junior data analyst at Cyclistic, a bike sharing company in Chicago
 5. Supporting visualization and key findings
 6. Top three recommendations based on your analysis
 
-## Phase 1: Ask
+# Phase 1: Ask
 In this phase, the problem and objectives of our case study and its desired outcome are stated.
-
-### Business goal:
-1. Increase the annual membership by converting casual riders into cyclistic members.
-2. Find how annual members and casual riders differs.
-3. Identify trends from Cyclistic historical bike trip data.
-4. A campaign to promote bike-share program. (Include email, social media, etc.)
 
 ### **Business task**:
 1. How do Annual Members and Casual Riders use Cyclistic bikes differently?
 2. Why Casual Riders would buy a membership?
 3. How does Cyclistic use digital media to influence Casual Riders to become Annual Members?
 
-## Phase 2: Prepare
+# Phase 2: Prepare
 In the this phase, we check the data being used and its limitations.
-
-### Information on data source:
-Cyclistic's historical trip data from December 2021 to November 2022 are used to analyze and identify trends. They are downloaded from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). The data has been made available by Motivate International Inc. under this [license](https://ride.divvybikes.com/data-license-agreement).
-
-We are working on 12 months of data separated by each month from December 2021 to November 2022 in CSV file format. The data is mainly organized by date in descending order (oldest first).
-
-### ROCCC of data:
-A good data source is ROCCC which stands for Reliable, Original, Comprehensive, Current, and Cited.
-
-- Reliable: yes, data is reliable as this is 1st party data.
-- Original: yes, data is original as this is downloaded directly
-- Comprehensive: no, we do not have access to some of the data
-- Current: yes, data is latest to the last 12 months
-- Cited: yes 
 
 ### Limitations of the data:
 - We cannot know if a casual member is repeteadly using bike share facility as we do not have that access.
@@ -98,45 +61,22 @@ glimpse(all_trips)
 #### Rename column member_casual to member_type for self-explanatory name
 ```{r}
 all_trips <- all_trips %>% 
-  rename(member_type=member_casual)
+  rename(member_type = member_casual) %>%
+  rename(bike_type = rideable_type)
 ```
 
 ### **Description of all data source used:**
 - We have used all 12 '.csv' files. 
-- We renamed column name member_casual to member_type for self-explanatory name. 
-- We take a look on `all_trips` and understand what data is provided. There are 13 columns and most of the variable are self descriptive except these columns. 
-- "ride_id" `<chr> <unique>` This is ride id, Unique for every trip when bike is unlocked. 
-- "rideable_type" `docked_bike, clasic_bike, electric_bike` This is type of bike provided by Cyclistic. 
-- "member_type" `casual, member` This is type of membership provided by the Cyclistic.
+- We renamed column name member_casual to member_type and rideable_type to bike_type for self-explanatory name. 
+- We take a look on `all_trips` and understand what data is provided.
 
 ## Phase 3: Process
 In this phase, we will clean the data and make it ready for analysis
 
 ### **Documentation of any cleaning or manipulation of data:**
-#### Inspect data frame and check for *NA* values
-```{r}
-glimpse(all_trips)
-sum(is.na(all_trips))
-```
-
-#### Remove *NA* values from the dataframe
-```{r}
-all_trips_v2 <- na.omit(all_trips)
-sum(is.na(all_trips_v2))
-glimpse(all_trips_v2)
-```
-
-#### Convert column started_at and ended_at to date-time format
-```{r}
-all_trips_v2$started_at <- as.POSIXlt(all_trips_v2$started_at, format="%F %T")
-all_trips_v2$ended_at <- as.POSIXlt(all_trips_v2$ended_at, format="%F %T")
-glimpse(all_trips_v2)
-```
-
 #### Remove unused columns
 ```{r}
-all_trips_v2 <- subset(all_trips_v2, select = -c(start_lat, start_lng, end_lat, end_lng))
-glimpse(all_trips_v2)
+all_trips_v2 <- subset(all_trips, select = -c(start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng))
 ```
 
 ### There are few problems to fix in this data:
@@ -144,60 +84,56 @@ glimpse(all_trips_v2)
 2. We will want to add a calculated field for length of ride since the data did not have the "trip_duration" column. We will add"ride_length" to the entire dataframe for consistency.
 3. There are some rides where trip_duration shows up as negative, including several hundred rides where Divvy took bikes out of circulation for Quality Control reasons. We will want to delete these rides.
 
-### Add columns that list the date, year, month, day of each ride
+#### Add columns that list the date, year, month, day of each ride, and ride length in seconds
 This will allow us to aggregate ride data for each month, quarter, day, or year ... before completing these operations we could only aggregate at the ride level.
-
-#### Add column date
 ```{r}
 all_trips_v2$date <- date(all_trips_v2$started_at)
-```
 
-#### Add column year, month, day, and day of week
-```{r}
 all_trips_v2$year <- year(all_trips_v2$date)
 all_trips_v2$month <- month(all_trips_v2$date)
 all_trips_v2$day <- day(all_trips_v2$date)
 all_trips_v2$day_of_week <- wday(all_trips_v2$date, label = TRUE, abbr = FALSE)
+
+all_trips_v2$ride_length <- difftime(all_trips_v2$ended_at, all_trips_v2$started_at)
 ```
 
-#### Add column ride_length_mins to all_trips
+#### Remove bike_type "docked_bike" from dataframe
+The bike_type "docked_bike" designates bikes that were taken out of circulation by Cyclistic to assess for quality control. There are also various trips where ride_length returns a negative duration. These entries need to be removed from our dataframe.
 ```{r}
-all_trips_v2$ride_length_mins <- trunc(difftime(all_trips_v2$ended_at, all_trips_v2$started_at, units = "mins"))
+all_trips_v2 <- all_trips_v2[!(all_trips_v2$bike_type == "docked_bike" | all_trips_v2$ride_length<0),]
 ```
 
-#### Remove negative number in column ride_length_mins to remove "bad" data
+#### Inspect dataframe for missing values
 ```{r}
-all_trips_v2 <- all_trips_v2 %>%
-  filter(ride_length_mins >= 0)
-```
-
-#### Inspect dataframe
-```{r}
-glimpse(all_trips_v2)
+all_trips_v2 %>%
+  sapply(function(x) sum(is.na(x)))
 ```
 
 ## Phase 4: Analyze
 In this phase, we will analyze the cleaned data
 
 ### **Summary of the analysis**
-#### Ride length summary for all riders
-```{r}
-all_trips_v2 %>% 
-  summarise(min = min(ride_length_mins), median = median(ride_length_mins), mean = mean(ride_length_mins), max = max(ride_length_mins))
-```
-#### Ride length summary for casual riders vs. member riders
+#### Number of rides and ride length average for casual riders vs. member riders
 ```{r}
 all_trips_v2 %>%
   group_by(member_type) %>%
-  summarise(min = min(ride_length_mins), median = median(ride_length_mins), mean = mean(ride_length_mins), max = max(ride_length_mins))
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length))
 ```
 
 #### Number of rides and ride length average by each day for casual riders vs. member riders
 ```{r}
 all_trips_v2 %>%
   group_by(day_of_week, member_type) %>%
-  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins))
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length))
 ```
+
+#### Number of rides and average ride length by member type and tyoe of bike
+```{r}
+all_trips_v2 %>%
+  group_by(member_type, bike_type) %>%
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length))
+```
+
 
 ## Phase 5: Share
 In this phase, we will create visualization to share the result of our analysis
@@ -205,39 +141,64 @@ In this phase, we will create visualization to share the result of our analysis
 ### **Supporting visualization and key findings**
 Our task is to find how annual members and casual riders use bikes differently.
 
-**Comparing the number of rides by weekday** for casual and member riders.
+### Key findings:
+
+```{r}
+all_trips_v2 %>%
+  mutate(months = month(started_at, label = TRUE)) %>%
+  group_by(member_type, months) %>%
+  summarise(number_of_rides = n()) %>%
+  arrange(member_type, months) %>%
+  ggplot(aes(x = months, y = number_of_rides, fill = member_type)) +
+  geom_col(position = "dodge") +
+  labs(title = "Cyclistic Bikeshare rides: Dec 2021 - Nov 2022", 
+       subtitle = "Total number of rides by month and user type",
+       x = "Month of the Year",
+       y = "Number of Rides",
+       fill = "User Type")
+```
+
+- The most popular usage months for casual riders are June, July, and August
+- The most popular usage months for member riders are July, August, and September
+- January is the month with the lowest number of rides for casual riders and member riders
+
 ```{r}
 all_trips_v2 %>%
   mutate(weekday = wday(started_at, label = TRUE)) %>%
   group_by(member_type, weekday) %>%
-  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins)) %>%
+  summarise(number_of_rides = n()) %>%
   arrange(member_type, weekday) %>%
   ggplot(aes(x = weekday, y = number_of_rides, fill = member_type)) +
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") +
+  labs(title = "Cyclistic Bikeshare rides: Dec 2021 - Nov 2022", 
+       subtitle = "Total number of rides by weekday and user type",
+       x = "Days of the week",
+       y = "Number of Rides",
+       fill = "User Type")
 ```
 
-- The highest number of rides occur on Wednesday for the member rides and Saturday for the casual rides
-- Tuesday has the lowest number of rides for casual
-- At the Weekend the number of rides for casual is higher than member
-- There are gradually increasing trend in the number of rides for casual the nearer to the weekend and vice versa
+- The most popular usage days for casual riders are on the weekend
+- The most popular usage days for member riders are on the weekday
+- Tuesday has the lowest number of rides for casual riders
 
-**Comparing the average ride length by weekday** for casual and member riders
 ```{r}
 all_trips_v2 %>%
   mutate(weekday = wday(started_at, label = TRUE)) %>%
   group_by(member_type, weekday) %>%
-  summarise(number_of_rides = n(), average_ride_length = mean(ride_length_mins)) %>%
+  summarise(number_of_rides = n(), average_ride_length = mean(ride_length)) %>%
   arrange(member_type, weekday) %>%
   ggplot(aes(x = weekday, y = average_ride_length, fill = member_type)) +
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") +
+  labs(title = "Cyclistic Bikeshare rides: Dec 2021 - Nov 2022", 
+       subtitle = "Average ride length by weekday and user type",
+       x = "Days of the week",
+       y = "Average Ride Length",
+       fill = "User Type")
 ```
 
-- The average ride length for casual is higher than members across all week
-- The longest average ride length occurs on Sundays for both casual and member
-- There is a gradually increasing trend in average ride length for casual the nearer to the weekend and vice versa
-- There are significant differences in the average ride length for casual and member accros all week
+- On average, casual riders spend about 59% more time on their rides than member riders
 
-**Comparing the number of rides by start time hour** for casual and member riders
+
 ```{r}
 all_trips_v2 %>% 
   mutate(start_time_hour = hour(started_at)) %>% 
@@ -245,17 +206,38 @@ all_trips_v2 %>%
   summarise(number_of_rides = n()) %>% 
   arrange(start_time_hour) %>% 
   ggplot(aes(x = start_time_hour, y = number_of_rides, fill = member_type)) + 
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") +
+  labs(title = "Cyclistic Bikeshare rides: Dec 2021 - Nov 2022", 
+       subtitle = "Total number of rides by start time hour and user type",
+       x = "Hour of the Day",
+       y = "Number of Rides",
+       fill = "User Type")
 ```
 
-- The highest number of rides for casual is 6 pm, and for members is 5 pm
-- There is an increasing trend in the number of rides for members between 5 am to 8 am, and between 3 pm to 5 pm
+- The most popular time of the day for casual riders are in the afternoon
+- The most popular time of the day for member riders are in the morning and afternoon
 
-### Key insights:
-- The casual riders ride more on weekends, and the members ride less on weekends
-- The longest average ride length for casual and member occur on Sunday
-- There are gradually increasing trend in number of rides for casual between 10 am to 6 pm
+
+
+```{r}
+all_trips_v2 %>%
+  group_by(member_type, bike_type) %>%
+  summarise(number_of_rides = n()) %>%
+  arrange(member_type, bike_type) %>%
+  ggplot(aes(x = member_type, y = number_of_rides, fill = bike_type)) +
+  geom_col(position = "stack") +
+  labs(title = "Cyclistic Bikeshare rides: Dec 2021 - Nov 2022", 
+       subtitle = "Total number of rides by user and bike type",
+       x = "User Type",
+       y = "Number of Rides",
+       fill = "Type of Bike")
+```
+
+- The casual riders prefer to use electric bike than classic bike
+- The member riders have a higher total number of rides in both types of bike than casual riders
+
 
 ### **Recommendations**:
-- The marketing campaign should be launched in weekends to attract more casual riders
-- The marketing campaign should try to focus on the time between 10 am to 6 pm to target more casual riders
+- The marketing campaign should be launched in June, July, and August weekends to attract more casual riders, given those are the most popular time casual riders use Cyclistic bikes
+- Implement a limited time promotion for annual membership that loosens limits on Saturday and Sunday rides, given those are the most popular days casual riders use Cyclistic bikes
+- Increase the number of electric bikes to inventory given casual riders prefer them over classic bikes

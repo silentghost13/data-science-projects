@@ -16,8 +16,8 @@ The project is to analyze data in a relational database to support inventory-rel
 
 ## Task 1 - Import the Classic Model Car Relational Database
 [Downloaded Database](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/mintclassicsDB.sql)  
-I will import the Mint Classics relational database using MySQL Workbench. This task involves downloading an SQL file containing the script to create and populate the database, and then importing this script into MySQL Workbench. After the import is complete, I will verify that the database has been successfully imported.
-Schema:
+I will import the Mint Classics relational database using MySQL Workbench. This task involves downloading an SQL file containing the script to create and populate the database, and then importing this script into MySQL Workbench. After the import is complete, I will verify that the database has been successfully imported.  
+Schema:  
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/0.%20Database%20Schema.png "Database Schema")
 
 ## Task 2 - Familiarization with the Mint Classics Database and Business Processes

@@ -22,6 +22,8 @@ After the import is complete, I will verify that the database has been successfu
 I will thoroughly analyze the Mint Classics database structure and data organization within each table. 
 I will use an Entity-Relationship Diagram (ERD) to understand the relationships between tables, 
 and I will explore the table contents to gain a deeper understanding of the business data.
+ERD Diagram:
+![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/0.%20EER%20Diagram.png "ERD Diagram")
 
 ## Task 3 - Analyze the business problem and identify the affected tables.
 I will investigate the business issue of closing one of Mint Classics' storage facilities. 

@@ -21,7 +21,8 @@ After the import is complete, I will verify that the database has been successfu
 ## Task 2 - Familiarization with the Mint Classics Database and Business Processes
 I will thoroughly analyze the Mint Classics database structure and data organization within each table. 
 I will use an Entity-Relationship Diagram (ERD) to understand the relationships between tables, 
-and I will explore the table contents to gain a deeper understanding of the business data.
+and I will explore the table contents to gain a deeper understanding of the business data.--
+
 ERD Diagram:
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/0.%20EER%20Diagram.png "ERD Diagram")
 

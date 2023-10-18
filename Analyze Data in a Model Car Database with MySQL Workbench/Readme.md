@@ -2,7 +2,8 @@
 
 ## Project overview:
 This project invites you to assume the role of an entry-level data analyst at the fictional Mint Classics Company.  
-The project is to analyze data in a relational database to support inventory-related business decisions, specifically the closure of a storage facility.
+The project is to analyze data in a relational database to support inventory-related business decisions, specifically the closure of a storage facility.  
+[Executive Summary](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Executive%20Summary%20-%20Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench.pdf).
 
 ## Demonstrated skills:
 1. Business understanding: To provide relevant solutions, I will thoroughly analyze the Mint Classics relational database and business processes.

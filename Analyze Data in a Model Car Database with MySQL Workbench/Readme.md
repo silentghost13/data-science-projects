@@ -174,41 +174,28 @@ By using this query, you can identify customers who have payments less than thei
 Based on the data analysis conducted using SQL queries, the following recommendations are made to address the inventory-related business problems identified:
 
 1. **Inventory Optimization**  
-Reduce the inventory of products with high inventory but low sales.  
-This can be achieved by either reducing the quantity ordered for these products or evaluating the actual demand for them.
-Reducing inventory will help in lowering storage costs and optimizing resource allocation.
+Reduce the inventory of products with high inventory but low sales. This can be achieved by either reducing the quantity ordered for these products or evaluating the actual demand for them. Reducing inventory will help in lowering storage costs and optimizing resource allocation.
 
 2. **Warehouse Review**  
-Conduct further reviews of warehouses with a low or inactive inventory.
-Consider closing or consolidating inefficient or inactive warehouses.  
-This will reduce warehouse rental costs and optimize inventory allocation.
+Conduct further reviews of warehouses with a low or inactive inventory. Consider closing or consolidating inefficient or inactive warehouses. This will reduce warehouse rental costs and optimize inventory allocation.
 
 3. **Product Pricing Evaluation**  
-Carefully review product prices.  
-Consider adjusting the prices of specific products with low sales.  
-Price reductions can enhance the attractiveness of these products to customers and boost sales.
+Carefully review product prices. Consider adjusting the prices of specific products with low sales. Price reductions can enhance the attractiveness of these products to customers and boost sales.
 
 4. **Customer Analysis**  
-Focus sales efforts on valuable customers who contribute significantly to sales.  
-Provide special incentives to these customers and consider offering products that align with their preferences.
+Focus sales efforts on valuable customers who contribute significantly to sales. Provide special incentives to these customers and consider offering products that align with their preferences.
 
 5. **Employee Performance Evaluation**  
-Evaluate sales employee performance using sales data.  
-Reward employees who have achieved or exceeded sales targets with incentives.  
-Identify employees who may need improvement and provide necessary training or support.
+Evaluate sales employee performance using sales data. Reward employees who have achieved or exceeded sales targets with incentives. Identify employees who may need improvement and provide necessary training or support.
 
 6. **Payment Analysis**  
-Monitor payments regularly to identify customers with poor payment trends.  
-Take follow-up actions to mitigate credit risks.  
-Manage cash flow carefully to ensure optimal liquidity.
+Monitor payments regularly to identify customers with poor payment trends. Take follow-up actions to mitigate credit risks. Manage cash flow carefully to ensure optimal liquidity.
 
 7. **Product Line Review**  
-Review the performance of various product lines. Further evaluate products with less success.  
-Consider product improvements or, if necessary, discontinuation of inefficient products. This will help in enhancing the profitability of the product portfolio.
+Review the performance of various product lines. Further evaluate products with less success. Consider product improvements or, if necessary, discontinuation of inefficient products. This will help in enhancing the profitability of the product portfolio.
 
 8. **Credit Policy Evaluation**  
-Conduct a thorough evaluation of the company's credit policies.  
-Identify customers with credit issues and consider providing solutions or making changes in credit policies to reduce credit risk.
+Conduct a thorough evaluation of the company's credit policies. Identify customers with credit issues and consider providing solutions or making changes in credit policies to reduce credit risk.
 
 By implementing these recommendations and utilizing data analysis, the company can optimize its operations, improve profitability, and provide better customer service.
 
@@ -217,7 +204,7 @@ The final task is to compile conclusions and recommendations based on the data a
 
 By completing all of these tasks, I have gained valuable experience in data analysis and the use of SQL to solve business problems. 
 
-**Disclaimer:** This project is for educational purposes only. I learned about this project from [Munzir Arsyuddin](https://github.com/pondokmunzir/Analyze-Data-in-a-Model-Car-Database-with-MySQL-Workbench).
+**Disclaimer:** I don't own this project. I learned about this project from [Munzir Arsyuddin](https://github.com/pondokmunzir/Analyze-Data-in-a-Model-Car-Database-with-MySQL-Workbench).
 
 
 

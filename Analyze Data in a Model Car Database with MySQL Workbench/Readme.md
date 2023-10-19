@@ -31,7 +31,7 @@ I will investigate the business issue of closing one of Mint Classics' storage f
 I will identify the relevant tables in the database and utilize SQL queries to retrieve the necessary data.
 
 **Areas of analysis in this project:**
-1. Identify products with high inventory but low sales and develop strategies to optimize inventory levels for these products.
+### 1. Identify products with high inventory but low sales and develop strategies to optimize inventory levels for these products.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/1.%20Inventory%20Optimization.png "Inventory Optimization")
 
@@ -43,7 +43,7 @@ In other words, this query is used to find products with quantities less than wh
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/1.%20Result%20limited%20to%2010%20rows.png "Result 1")
 
-2. Assess the need for all currently used warehouses and review warehouses with low or inactive inventory for potential closure.
+### 2. Assess the need for all currently used warehouses and review warehouses with low or inactive inventory for potential closure.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/2.%20Warehouse%20Review%20-%20Total%20Inventory%20Product.png "Warehouse Review - Total Inventory Product")
 
@@ -69,7 +69,7 @@ In other words, this query helps you view the total inventory for each warehouse
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/2.%20Result%20limited%20to%2010%20rows%20(Warehouse).png "Result 2 Warehouse")
 
-3. Analyze the relationship between product prices and sales levels, and develop recommendations for price adjustments to impact sales.
+### 3. Analyze the relationship between product prices and sales levels, and develop recommendations for price adjustments to impact sales.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/3.%20Product%20Pricing%20Evaluation.png "Product Pricing Evaluation")
 
@@ -85,7 +85,7 @@ In other words, this query helps you obtain a list of products with the highest 
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/3.%20Result%20limited%20to%2010%20rows.png "Result 3")
 
-4. Identify the customers who contribute the most to sales and develop strategies to focus sales efforts on these valuable customers.
+### 4. Identify the customers who contribute the most to sales and develop strategies to focus sales efforts on these valuable customers.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/4.%20Customer%20Analysis.png "Customer Analysis")
 
@@ -101,7 +101,7 @@ In other words, this query helps you obtain a list of customers with the highest
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/4.%20Result%20limited%20to%2010%20rows.png "Result 4")
 
-5. Develop metrics to evaluate sales employee performance using sales data.
+### 5. Develop metrics to evaluate sales employee performance using sales data.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/5.%20Employee%20Performance%20Evaluation.png "Employee Performance Evaluation")
 
@@ -121,7 +121,7 @@ In other words, this query helps you obtain a list of employees along with their
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/5.%20Result%20limited%20to%2010%20rows.png "Result 5")
 
-6. Analyze customer payment trends to identify credit risks and develop cash flow management strategies.
+### 6. Analyze customer payment trends to identify credit risks and develop cash flow management strategies.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/6.%20Payment%20Analysis.png "Payment Analysis")
 
@@ -135,7 +135,7 @@ By using this query, you can view a list of customers along with the dates and t
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/6.%20Result%20limited%20to%2010%20rows.png "Result 6")
 
-7. Compare the performance of various product lines to identify the most successful products and those that need improvement or removal.
+### 7. Compare the performance of various product lines to identify the most successful products and those that need improvement or removal.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/7.%20Product%20Line%20Review.png "Product Line Review")
 
@@ -153,7 +153,7 @@ By using this query, you can analyze the performance of various product lines, i
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/7.%20Result%20limited%20to%2010%20rows.png "Result 7")
 
-8. Evaluate the company's credit policies and identify customers with credit issues that need to be addressed.
+### 8. Evaluate the company's credit policies and identify customers with credit issues that need to be addressed.
 
 ![alt text](https://github.com/silentghost13/portfolio-projects/blob/main/Analyze%20Data%20in%20a%20Model%20Car%20Database%20with%20MySQL%20Workbench/Images/8.%20Credit%20Policy%20Evaluation.png "Credit Policy Evaluation")
 
@@ -175,28 +175,28 @@ By using this query, you can identify customers who have payments less than thei
 **Summary of Recommendations to Address Inventory-Related Business Issues**  
 Based on the data analysis conducted using SQL queries, the following recommendations are made to address the inventory-related business problems identified:
 
-1. **Inventory Optimization**  
+### 1. Inventory Optimization 
 Reduce the inventory of products with high inventory but low sales. This can be achieved by either reducing the quantity ordered for these products or evaluating the actual demand for them. Reducing inventory will help in lowering storage costs and optimizing resource allocation.
 
-2. **Warehouse Review**  
+### 2. Warehouse Review
 Conduct further reviews of warehouses with a low or inactive inventory. Consider closing or consolidating inefficient or inactive warehouses. This will reduce warehouse rental costs and optimize inventory allocation.
 
-3. **Product Pricing Evaluation**  
+### 3. Product Pricing Evaluation 
 Carefully review product prices. Consider adjusting the prices of specific products with low sales. Price reductions can enhance the attractiveness of these products to customers and boost sales.
 
-4. **Customer Analysis**  
+### 4. Customer Analysis
 Focus sales efforts on valuable customers who contribute significantly to sales. Provide special incentives to these customers and consider offering products that align with their preferences.
 
-5. **Employee Performance Evaluation**  
+### 5. Employee Performance Evaluation
 Evaluate sales employee performance using sales data. Reward employees who have achieved or exceeded sales targets with incentives. Identify employees who may need improvement and provide necessary training or support.
 
-6. **Payment Analysis**  
+### 6. Payment Analysis
 Monitor payments regularly to identify customers with poor payment trends. Take follow-up actions to mitigate credit risks. Manage cash flow carefully to ensure optimal liquidity.
 
-7. **Product Line Review**  
+### 7. Product Line Review
 Review the performance of various product lines. Further evaluate products with less success. Consider product improvements or, if necessary, discontinuation of inefficient products. This will help in enhancing the profitability of the product portfolio.
 
-8. **Credit Policy Evaluation**  
+### 8. Credit Policy Evaluation
 Conduct a thorough evaluation of the company's credit policies. Identify customers with credit issues and consider providing solutions or making changes in credit policies to reduce credit risk.
 
 By implementing these recommendations and utilizing data analysis, the company can optimize its operations, improve profitability, and provide better customer service.
